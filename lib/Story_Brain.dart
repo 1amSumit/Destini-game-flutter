@@ -35,24 +35,51 @@ class StoryBrain {
   ];
 
   String getStory() {
-    return _storyData[0].storyTitle;
+    return _storyData[storyNumber].storyTitle;
   }
 
-  String getChoice1({int n = 0}) {
-    return _storyData[n].choice1;
+  String getChoice1() {
+    return _storyData[storyNumber].choice1;
   }
 
-  String getChoice2({int n = 0}) {
-    return _storyData[n].choice2;
+  String getChoice2() {
+    return _storyData[storyNumber].choice2;
   }
 
   String nextStory(int n) {
     if (n == 1 && storyNumber == 0) {
+      storyNumber = 2;
       return _storyData[2].storyTitle;
     }
     if (n == 2 && storyNumber == 0) {
+      storyNumber = 1;
       return _storyData[1].storyTitle;
     }
-    return "";
+
+    if (n == 1 && storyNumber == 2) {
+      storyNumber = 5;
+      return _storyData[5].storyTitle;
+    }
+    if (n == 2 && storyNumber == 2) {
+      storyNumber = 4;
+      return _storyData[4].storyTitle;
+    }
+
+    if (n == 1 && storyNumber == 1) {
+      storyNumber = 2;
+      return _storyData[2].storyTitle;
+    }
+    if (n == 2 && storyNumber == 1) {
+      storyNumber = 3;
+      return _storyData[3].storyTitle;
+    }
+    if (storyNumber == 3 || storyNumber == 4 || storyNumber == 5 && n == 1) {
+      restart();
+    }
+    return _storyData[0].storyTitle;
+  }
+
+  void restart() {
+    storyNumber = 0;
   }
 }
