@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import "Story_Brain.dart";
+
+StoryBrain storyBrain = StoryBrain();
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +43,14 @@ class Destini extends StatefulWidget {
 }
 
 class _DestiniState extends State<Destini> {
+  String story = storyBrain.getStory();
+
+  void nextStory(int n) {
+    setState(() {
+      story = storyBrain.nextStory(n);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,7 +63,7 @@ class _DestiniState extends State<Destini> {
             padding: EdgeInsets.all(25),
             child: Center(
               child: Text(
-                "The question will appera here",
+                story,
                 style: TextStyle(color: Colors.white, fontSize: 25),
               ),
             ),
@@ -65,9 +76,11 @@ class _DestiniState extends State<Destini> {
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.red),
               ),
-              onPressed: () {},
+              onPressed: () {
+                nextStory(1);
+              },
               child: Text(
-                "Choose 1",
+                storyBrain.getChoice1(),
                 style: TextStyle(color: Colors.white, fontSize: 25.0),
               ),
             ),
@@ -80,9 +93,11 @@ class _DestiniState extends State<Destini> {
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
               ),
-              onPressed: () {},
+              onPressed: () {
+                nextStory(2);
+              },
               child: Text(
-                "Choose 2",
+                storyBrain.getChoice2(),
                 style: TextStyle(color: Colors.white, fontSize: 25.0),
               ),
             ),
