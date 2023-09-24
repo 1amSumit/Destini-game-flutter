@@ -89,16 +89,19 @@ class _DestiniState extends State<Destini> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15),
-            child: TextButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.blue),
-              ),
-              onPressed: () {
-                nextStory(2);
-              },
-              child: Text(
-                storyBrain.getChoice2(),
-                style: TextStyle(color: Colors.white, fontSize: 25.0),
+            child: Visibility(
+              visible: storyBrain.buttonShouldVissible(),
+              child: TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                ),
+                onPressed: () {
+                  nextStory(2);
+                },
+                child: Text(
+                  storyBrain.getChoice2(),
+                  style: TextStyle(color: Colors.white, fontSize: 25.0),
+                ),
               ),
             ),
           ),

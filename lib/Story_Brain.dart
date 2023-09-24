@@ -82,4 +82,12 @@ class StoryBrain {
   void restart() {
     _storyNumber = 0;
   }
+
+  bool buttonShouldVissible() {
+    if (_storyNumber == 3 || _storyNumber == 4 || _storyNumber == 5) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
